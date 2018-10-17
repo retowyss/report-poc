@@ -1,0 +1,46 @@
+---
+title: "Plumber Report POC"
+author: "Reto Wyss"
+date: "10/17/2018"
+output: html_document
+---
+
+Create links to the report endpoint
+
+## rnorm
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+library(htmltools)
+library(purrr)
+
+n <- c(20, 50, 100, 1000)
+txt <- "Click any of the links to generate a report."
+
+itm <- function(x) {
+  tags$li(tags$a(
+    paste("rnorm N =", x), 
+    href = paste0("/rnorm/", x), 
+    target = "blank"
+  ))
+}
+
+links <-  map(n, itm) 
+
+div(tags$p(txt), tags$ul(links))
+```
+
+## Swiss Public Transport Time Table
+
+Endpoint: /swiss-public-transport-timetable/*from*/*to*
+
+This creates a pdf displaying a timetable.
+
+* [Burgdorf to Bern](/swiss-public-transport-timetable/Burgdorf/Bern)
+* [Genf to Bern](/swiss-public-transport-timetable/Genf/Bern)
+
+# Plotly
+
+Endpoint: /plotly/*species*
+
+* [Iris without setosa](/plotly/setosa)
+

@@ -1,0 +1,25 @@
+---
+title: "Rnorm"
+author: "Reto Wyss"
+date: "2018-10-16"
+output: 
+  pdf_document: 
+    highlight: default
+params:
+  n: 100
+---
+
+## Plumber Test Report
+
+Change the number  `/rnorm/<n>` in your url bar or refresh the page to rerun the report.
+
+```{r}
+library(ggplot2)
+
+s <- data.frame(x = rnorm(params$n))
+
+ggplot(s, aes(x = x)) +
+  geom_histogram(bins = 21) +
+  ggtitle(paste("Normal Distribution n =", params$n, "Samples"))
+```
+

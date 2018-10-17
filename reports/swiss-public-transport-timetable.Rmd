@@ -1,0 +1,37 @@
+---
+title: "`r params$from` to `r params$to`"
+author: "Reto Wyss"
+date: "10/17/2018"
+output: pdf_document
+params:
+  from: "Bern"
+  to: "Burgodrf"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Time Table
+
+Swiss Public Transport package available on github.
+
+```{r, message=FALSE}
+time_table <- SwissPublicTransport::connections(from = params$from, to = params$to)
+
+duration_regex <- "[0-9]{2}[[:punct:]][0-9]{2}(?<=[[:punct:]][0-9]{2})"
+
+time_table <- dplyr::transmute(time_table, 
+  From      = from.station.name, 
+  To        = to.station.name,
+  departure = lubridate::ymd_hms(from.departure),
+  h         = lubridate::hour(departure),
+  m         = lubridate::minute(departure), 
+  Departure = paste0(h,":",stringr::str_pad(m, 2, pad = "0")),
+  Duration  = stringr::str_extract(duration, duration_regex),
+  Platform  = from.platform
+) 
+
+pander::pander(dplyr::select(time_table, -departure, -h, -m))
+```
+

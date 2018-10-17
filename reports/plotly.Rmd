@@ -1,0 +1,18 @@
+---
+title: "Plotly"
+author: "Reto Wyss"
+date: "10/17/2018"
+output: html_document
+params: 
+  species: "derp"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
+d <- dplyr::filter(iris, Species != params$species)
+plotly::plot_ly(d, x = ~ Sepal.Length, y = ~ Petal.Length, color = ~ Species)
+```
+
