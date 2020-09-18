@@ -8,4 +8,4 @@ With R plumber you can create an API.
 * [Demo Video of this Repo](https://youtu.be/tCrMPBq8P_4) 
 
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/tCrMPBq8P_4/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/tCrMPBq8P_4/0.jpg)](http://www.youtube.com/watch?v=tCrMPBq8P_4)
